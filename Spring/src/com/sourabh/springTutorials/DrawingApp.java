@@ -15,6 +15,7 @@ public class DrawingApp {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		Triangle tr = (Triangle) context.getBean("triangle");
 		tr.draw();
+		Vehicle vc = (Vehicle) context.getBean("vehicle");
+		vc.print();
 	}
-
 }
