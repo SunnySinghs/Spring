@@ -8,7 +8,6 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-	
 	<bean id="triangle" class="com.sourabh.springTutorials.Triangle">
 		<constructor-arg value="Equilateral"></constructor-arg>
 		<constructor-arg >
@@ -17,9 +16,8 @@
 				<property name="y" value="0"></property>
 			</bean>
 		</constructor-arg>
-		<constructor-arg ref="pointD"></constructor-arg>
+		<constructor-arg ref="pointB"></constructor-arg>
 		<property name="height" value="10"></property>
-		<property name="pointB" ref="pointB"></property>
 		<property name="pointC" ref="pointC"></property>
 	</bean>
 	
@@ -33,9 +31,10 @@
 		<property name="y" value="0"></property>
 	</bean>
 	
-	<bean id="pointD" class="com.sourabh.springTutorials.Points">
-		<property name="x" value="20"></property>
-		<property name="y" value="20"></property>
+	<bean id="vehicle" class="com.sourabh.springTutorials.Vehicle">
+		<!-- <constructor-arg value="car"></constructor-arg>-->
+		<constructor-arg value="1" type = "int"></constructor-arg>
+		<property name="type" value="car"></property>
 	</bean>
 
 </beans>
