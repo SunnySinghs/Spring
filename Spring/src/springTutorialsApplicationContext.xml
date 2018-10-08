@@ -31,11 +31,13 @@
 		<property name="y" value="0"></property>
 	</bean>
 	
-	<bean id="vehicle" class="com.sourabh.springTutorials.Vehicle">
+	<bean id="vehicle" class="com.sourabh.springTutorials.Vehicle" name="vehicle-bean">
 		<!-- <constructor-arg value="car"></constructor-arg>-->
 		<constructor-arg value="1" type = "int"></constructor-arg>
 		<property name="type" value="car"></property>
 	</bean>
+	
+	<alias name="vehicle-bean" alias="vehicle-alias"/>
 
 </beans>
 
