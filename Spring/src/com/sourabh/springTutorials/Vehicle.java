@@ -1,17 +1,19 @@
 package com.sourabh.springTutorials;
 
-public class Vehicle {
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
+public class Vehicle implements InitializingBean, DisposableBean{
 
 	private String type;
 	private int srNo;
 
 	public Vehicle(String type) {
-		super();
 		this.type = type;
 	}
 
 	public Vehicle(int srNo) {
-		super();
+		System.out.println("Constructing SrNo");
 		this.srNo = srNo;
 	}
 
@@ -20,6 +22,7 @@ public class Vehicle {
 	}
 
 	public void setType(String type) {
+		System.out.println("setting type");
 		this.type = type;
 	}
 
@@ -35,4 +38,24 @@ public class Vehicle {
 		System.out.println("Vehicle type : "+getType());
 		System.out.println("Vehicle srNo : "+getSrNo());
 	}
+
+	@Override
+	public void destroy() throws Exception {
+		System.out.println("Disposable Bean");
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("Intializing Bean");
+	}
+	
+	public void myInit() {
+		System.out.println("Init Bean");
+	}
+	
+	public void cleanUp() {
+		System.out.println("CleanUp bean");
+	}
+	
+	
 }

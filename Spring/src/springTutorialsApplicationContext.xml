@@ -8,6 +8,7 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+<context:annotation-config/>
 	<bean id="triangle" class="com.sourabh.springTutorials.Triangle">
 		<constructor-arg value="Equilateral"></constructor-arg>
 		<constructor-arg >
@@ -31,14 +32,74 @@
 		<property name="y" value="0"></property>
 	</bean>
 	
-	<bean id="vehicle" class="com.sourabh.springTutorials.Vehicle" name="vehicle-bean">
+	<bean id="pointD" class="com.sourabh.springTutorials.Points">
+		<property name="x" value="20"></property>
+		<property name="y" value="-20"></property>
+	</bean>
+	
+	<bean id="pointE" class="com.sourabh.springTutorials.Points">
+		<property name="x" value="-20"></property>
+		<property name="y" value="${PointE.PointY}"></property>
+	</bean>
+	
+	<bean id="vehicle" class="com.sourabh.springTutorials.Vehicle" name="vehicle-bean" init-method="myInit" destroy-method="cleanUp">
 		<!-- <constructor-arg value="car"></constructor-arg>-->
 		<constructor-arg value="1" type = "int"></constructor-arg>
 		<property name="type" value="car"></property>
 	</bean>
 	
 	<alias name="vehicle-bean" alias="vehicle-alias"/>
-
+	
+	<bean id="parentLine" class="com.sourabh.springTutorials.Line">
+		<property name="pointB" ref="pointB"></property>
+		<property name="pointC" ref="pointC"></property>
+	</bean>
+	
+	<bean id="rectangle" class="com.sourabh.springTutorials.Rectangle" parent="parentLine">
+		<property name="pointD" ref="pointD"></property>
+		<property name="pointE" ref="pointE"></property>
+	</bean>
+	<bean id="line" class="com.sourabh.springTutorials.Line" autowire="byName">
+	</bean>
+	
+	<bean id="pentagon" class="com.sourabh.springTutorials.Pentagon" autowire="byType">
+	</bean>
+	
+	<bean id="shape" class="com.sourabh.springTutorials.Shape" autowire="constructor">
+	</bean>
+	
+	<bean id="parentSquare" class="com.sourabh.springTutorials.Square" abstract="true">
+		<property name="points">
+			<list>
+				<ref bean="pointB"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="square" class="com.sourabh.springTutorials.Square" parent="parentSquare">
+		<property name="points">
+			<list merge="true">
+				<ref bean="pointC"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- <bean class="com.sourabh.springTutorials.DiaplayNameBeanPostProcessor">
+		<property name="order" value="1"></property>
+	</bean>
+	<bean class="com.sourabh.springTutorials.MyBeanFactoryApp">
+	</bean> -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="sport.properties"></property>
+	</bean>
+	
+	<bean id="circle" class="com.sourabh.springTutorials.Circle">
+	</bean>
+	<bean id="pointF" class="com.sourabh.springTutorials.Points">
+	<qualifier value="circleRelated"/>
+		<property name="x" value="-30"></property>
+		<property name="y" value="${PointE.PointY}"></property>
+	</bean>
 </beans>
 
 
