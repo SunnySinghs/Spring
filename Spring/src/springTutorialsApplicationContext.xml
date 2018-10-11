@@ -100,6 +100,14 @@
 		<property name="x" value="-30"></property>
 		<property name="y" value="${PointE.PointY}"></property>
 	</bean>
+	
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	<property name="basenames">
+	<list>
+		<value>sport</value>
+	</list>
+	</property>
+	</bean>
 </beans>
 
 

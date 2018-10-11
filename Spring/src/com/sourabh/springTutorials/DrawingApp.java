@@ -15,7 +15,7 @@ public class DrawingApp {
 		//BeanFactory factory = new XmlBeanFactory(rs);
 		AbstractApplicationContext context = new ClassPathXmlApplicationContext("springTutorialsApplicationContext.xml");
 		//context.registerShutdownHook();
-		Triangle tr = (Triangle) context.getBean("triangle");
+		/*Triangle tr = (Triangle) context.getBean("triangle");
 		tr.draw();
 		Vehicle vc = (Vehicle) context.getBean("vehicle-alias");
 		vc.print();
@@ -33,10 +33,12 @@ public class DrawingApp {
 		shape.draw();
 		
 		Square squ = context.getBean("square", Square.class);
-		squ.draw();
+		squ.draw();*/
 		
 		Circle circle = context.getBean("circle",Circle.class);
 		circle.draw();
+		
+		System.out.println(context.getMessage("greeting", null, "Default Greeting", null));
 		context.close();
 	}
 }
